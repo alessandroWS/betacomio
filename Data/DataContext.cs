@@ -14,6 +14,16 @@ namespace betacomio.Data
 
         // DbSet per accedere alla tabella "Users" nel database
         public DbSet<User> Users => Set<User>();
-        public DbSet<AdminRequest> AdminRequests => Set<AdminRequest>();
+        public DbSet<AdminRequest> AdminRequest => Set<AdminRequest>();
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Definizione chiave primaria per la classe AdminRequest
+            modelBuilder.Entity<AdminRequest>().HasKey(ar => ar.IdRequest);
+            modelBuilder.Entity<AdminRequest>(entity =>
+            {
+                entity.ToTable("AdminRequest", tb => tb.HasTrigger("betacomio"));
+            });
+        }
+        
     }
 }

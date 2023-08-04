@@ -18,6 +18,7 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Authorization;
 global using betacomio.Dtos.User;
 global using betacomio.Services.AdminRequestService;
+//global using betacomio.Dtos.AdminRequest;
 // Creazione dell'istanza del WebApplicationBuilder
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +71,8 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOldOrderService, OldOrderService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAdminRequestService, AdminRequestService>();
+
 
 // Aggiunge l'autenticazione con JWT Bearer
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -103,6 +106,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
 
 // Crea l'istanza dell'applicazione
 var app = builder.Build();

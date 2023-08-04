@@ -1,3 +1,5 @@
+using betacomio.Dtos.AdminRequest;
+
 namespace betacomio
 {
     public class AutoMapperProfiles : Profile
@@ -26,7 +28,13 @@ namespace betacomio
                 .ForMember(dest => dest.OrderQty, opt => opt.MapFrom(src => src.SalesOrderDetails.FirstOrDefault().OrderQty))
                 .ForMember(dest => dest.ProductID, opt => opt.MapFrom(src => src.SalesOrderDetails.FirstOrDefault().ProductId))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.SalesOrderDetails.FirstOrDefault().Product.Name));
-            
+            CreateMap<AdminRequest, PutReqDto>();
+            CreateMap<PutReqDto, AdminRequest>();
+            //CreateMap<AdminRequest, AdminRequestInfoDto>();
+
+                // CreateMap<AdminRequest, AdminRequestInfoDto>()
+                // .ForMember(dest => dest.IdRequest, opt => opt.MapFrom(src => src.IdRequest))
+                // .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username));
         }
     }
 }
