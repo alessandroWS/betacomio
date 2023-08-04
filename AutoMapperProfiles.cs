@@ -26,6 +26,7 @@ namespace betacomio
                 .ForMember(dest => dest.OrderQty, opt => opt.MapFrom(src => src.SalesOrderDetails.FirstOrDefault().OrderQty))
                 .ForMember(dest => dest.ProductID, opt => opt.MapFrom(src => src.SalesOrderDetails.FirstOrDefault().ProductId))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.SalesOrderDetails.FirstOrDefault().Product.Name));
+            
         }
     }
 }

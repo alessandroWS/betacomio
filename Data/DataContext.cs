@@ -14,5 +14,6 @@ namespace betacomio.Data
 
         // DbSet per accedere alla tabella "Users" nel database
         public DbSet<User> Users => Set<User>();
+        public DbSet<AdminRequest> AdminRequests => Set<AdminRequest>();
     }
 }

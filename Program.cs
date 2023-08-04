@@ -17,6 +17,7 @@ global using betacomio.Dtos.Product;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Authorization;
 global using betacomio.Dtos.User;
+global using betacomio.Services.AdminRequestService;
 // Creazione dell'istanza del WebApplicationBuilder
 var builder = WebApplication.CreateBuilder(args);
 
