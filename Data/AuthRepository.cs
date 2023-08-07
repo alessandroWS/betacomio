@@ -148,7 +148,9 @@ namespace betacomio.Data
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, userCred.Id.ToString()),
-                new Claim(ClaimTypes.Name, userCred.Username)
+                new Claim(ClaimTypes.Name, userCred.Username),
+                new Claim("IsAdmin", userCred.IsAdmin.ToString())
+                
             };
 
             // Ottiene la chiave segreta dal file JSON delle impostazioni dell'applicazione

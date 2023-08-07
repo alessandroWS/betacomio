@@ -71,6 +71,27 @@ namespace betacomio.Services.AdminRequestService
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto aggiornato o l'eventuale messaggio di errore
             return serviceResponse;
         }
-    
+    public async Task<ServiceResponse<AdminRequest>> CreateAdminRequest(AdminRequest adminRequest)
+        {
+            var serviceResponse = new ServiceResponse<AdminRequest>();
+
+            try
+            {
+                // Aggiungi l'AdminRequest al DataContext
+                _context.AdminRequest.Add(adminRequest);
+                // Salva le modifiche nel database
+                await _context.SaveChangesAsync();
+
+                // Mapping dell'AdminRequest aggiunto a un oggetto GetAdminRequestDto utilizzando AutoMapper
+                serviceResponse.Data = _mapper.Map<AdminRequest>(adminRequest);
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.InnerException.Message;
+            }
+
+            return serviceResponse;
+        }
     }
 }

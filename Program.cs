@@ -90,6 +90,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
             // Non valida l'audience del token (destinatario)
             ValidateAudience = false
+            
         };
     });
 
