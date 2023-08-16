@@ -75,15 +75,25 @@ namespace betacomio.Services.AdminRequestService
         {
             var serviceResponse = new ServiceResponse<AdminRequest>();
 
+            //Calcolo del numero di richieste fatte dall'utente loggato
+            var numReq = await _context.AdminRequest.Where(c => c.User!.Id == adminRequest.UserId).CountAsync();
+
             try
             {
-                // Aggiungi l'AdminRequest al DataContext
-                _context.AdminRequest.Add(adminRequest);
-                // Salva le modifiche nel database
-                await _context.SaveChangesAsync();
+                //controllo per verificare se l'utente ha fatto piu di una richiesta
+                if(numReq > 0){
+                    serviceResponse.Success = false;   
+                    serviceResponse.Message = "Hai fatto troppe richieste gay";
 
-                // Mapping dell'AdminRequest aggiunto a un oggetto GetAdminRequestDto utilizzando AutoMapper
-                serviceResponse.Data = _mapper.Map<AdminRequest>(adminRequest);
+                } else {
+                    // Aggiungi l'AdminRequest al DataContext
+                    _context.AdminRequest.Add(adminRequest);
+                    // Salva le modifiche nel database
+                    await _context.SaveChangesAsync();
+
+                    // Mapping dell'AdminRequest aggiunto a un oggetto GetAdminRequestDto utilizzando AutoMapper
+                    serviceResponse.Data = _mapper.Map<AdminRequest>(adminRequest);
+                }
             }
             catch (Exception ex)
             {

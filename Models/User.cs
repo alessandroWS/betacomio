@@ -6,6 +6,8 @@ namespace betacomio.Models
         public string Username { get; set; } = string.Empty;
         public bool? IsAdmin { get; set; } = false;
         public List<Order>? orders{ get; set; } 
+        public List<Like>? likes{ get; set; } 
+
 
     }
 }

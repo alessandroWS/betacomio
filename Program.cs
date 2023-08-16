@@ -18,6 +18,7 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Authorization;
 global using betacomio.Dtos.User;
 global using betacomio.Services.AdminRequestService;
+using betacomio.Services.LikesService;
 //global using betacomio.Dtos.AdminRequest;
 // Creazione dell'istanza del WebApplicationBuilder
 var builder = WebApplication.CreateBuilder(args);
@@ -72,6 +73,7 @@ builder.Services.AddScoped<IOldOrderService, OldOrderService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAdminRequestService, AdminRequestService>();
+builder.Services.AddScoped<ILikesService, LikesService>();
 
 
 // Aggiunge l'autenticazione con JWT Bearer
@@ -98,16 +100,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddHttpContextAccessor();
 
 // Configura le politiche CORS per consentire richieste solo dall'URL specificato
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
-    {
-        builder.WithOrigins("http://localhost:4200") // Sostituisci con l'URL del frontend Angular
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-    });
-});
-
+builder.Services.AddCors(opt =>
+            {
+                opt.AddDefaultPolicy(
+                    build =>
+                    {
+                        //build.WithOrigins("https://localhost:7286/")
+                        build.SetIsOriginAllowed(origin => true)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                    });
+            });
 
 // Crea l'istanza dell'applicazione
 var app = builder.Build();

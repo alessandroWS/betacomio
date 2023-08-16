@@ -1,4 +1,5 @@
 using betacomio.Dtos.AdminRequest;
+using betacomio.Dtos.Likes;
 
 namespace betacomio
 {
@@ -30,6 +31,9 @@ namespace betacomio
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.SalesOrderDetails.FirstOrDefault().Product.Name));
             CreateMap<AdminRequest, PutReqDto>();
             CreateMap<PutReqDto, AdminRequest>();
+
+            CreateMap<Like, AddLikesDto>();
+            CreateMap<AddLikesDto, Like>();
             //CreateMap<AdminRequest, AdminRequestInfoDto>();
 
                 // CreateMap<AdminRequest, AdminRequestInfoDto>()
