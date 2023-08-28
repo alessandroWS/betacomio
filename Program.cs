@@ -147,3 +147,5 @@ app.UseCors();
 
 // Avvia l'applicazione
 app.Run();
+
+//modifica fatta da Serena
