@@ -1,5 +1,6 @@
 using betacomio.Dtos.AdminRequest;
 using betacomio.Dtos.Likes;
+using betacomio.Dtos.ProductCategory;
 
 namespace betacomio
 {
@@ -34,6 +35,9 @@ namespace betacomio
 
             CreateMap<Like, AddLikesDto>();
             CreateMap<AddLikesDto, Like>();
+
+            CreateMap<ProductCategory, GetProductCategoryDto>();
+            CreateMap<GetProductCategoryDto, ProductCategory>();
             //CreateMap<AdminRequest, AdminRequestInfoDto>();
 
                 // CreateMap<AdminRequest, AdminRequestInfoDto>()

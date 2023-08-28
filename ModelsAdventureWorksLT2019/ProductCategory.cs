@@ -11,6 +11,8 @@ public partial class ProductCategory
 
     public string Name { get; set; } = null!;
 
+    public string? Img { get; set; }
+
     public Guid Rowguid { get; set; }
 
     public DateTime ModifiedDate { get; set; }

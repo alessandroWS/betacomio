@@ -41,7 +41,7 @@ public partial class Product
 
     public DateTime ModifiedDate { get; set; }
 
-    public virtual ProductCategory? ProductCategory { get; set; }
+    public virtual ProductCategory ProductCategory { get; set; }
 
     public virtual ProductModel? ProductModel { get; set; }
 

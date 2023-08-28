@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj": {}
+    "C:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj": {
+    "C:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj",
+        "projectUniqueName": "C:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj",
         "projectName": "betacomio",
-        "projectPath": "c:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj",
+        "projectPath": "C:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj",
         "packagesPath": "C:\\Users\\Fabio\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Fabio\\wa\\siti\\betacomio\\obj\\",
+        "outputPath": "C:\\Users\\Fabio\\wa\\siti\\betacomio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -19,6 +19,9 @@ global using Microsoft.AspNetCore.Authorization;
 global using betacomio.Dtos.User;
 global using betacomio.Services.AdminRequestService;
 using betacomio.Services.LikesService;
+using Microsoft.Extensions.DependencyInjection;
+using System.Text.Json.Serialization;
+using betacomio.Services.ProductCategoryService;
 //global using betacomio.Dtos.AdminRequest;
 // Creazione dell'istanza del WebApplicationBuilder
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +40,7 @@ builder.Services.AddDbContext<DataContext2>(options =>
 builder.Services.AddDbContext<AdventureWorksLt2019Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AdventureConnection")));
 
+builder.Services.AddControllers().AddJsonOptions(jsOpt => jsOpt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Aggiunge i servizi del controller
 builder.Services.AddControllers();
 
@@ -74,6 +78,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAdminRequestService, AdminRequestService>();
 builder.Services.AddScoped<ILikesService, LikesService>();
+builder.Services.AddScoped<IProductCategoryService, ProductCategoryService>();
 
 
 // Aggiunge l'autenticazione con JWT Bearer

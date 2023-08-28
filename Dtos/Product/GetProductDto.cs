@@ -11,6 +11,6 @@ namespace betacomio.Dtos.Product
 
     public decimal ListPrice { get; set; }
 
-
+    public string ProductCategoryName { get; set; }
     }
 }

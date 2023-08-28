@@ -17,13 +17,14 @@ namespace betacomio.Controllers
         // Metodo HTTP: GET
         // Percorso: api/Product/GetAll
         [HttpGet("GetAll")] // Attributo per specificare il percorso dell'endpoint di questo metodo
-        public async Task<ActionResult<ServiceResponse<List<GetOrderDto>>>> Get()
+        
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> Get()
         {
             // Chiamata al servizio IProductService per ottenere tutti i prodotti
             var products = await _productService.GetAllProduct();
 
             // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dei prodotti
-            return Ok(products);
+            return products;
         }
     }
 }

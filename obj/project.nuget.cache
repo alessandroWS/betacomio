@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+ByCf1lWMuMNVZ3oQ3BaScyNwlJfUsmuDgROkShwiwL1FoAJpVvNpjzsYgeoGqIg9OWj3dE+OGYVUwitpwTo5w==",
+  "dgSpecHash": "NMIlP8VRq7diRtyRJCQ3dugfeO+/Wznmq5poyXLOOfBMv2B8YKqTe9v4coKYcDbEmTHCfzPbZAsxse2NPf1wag==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj",
+  "projectFilePath": "C:\\Users\\Fabio\\wa\\siti\\betacomio\\betacomio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fabio\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Fabio\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -29,20 +29,31 @@ namespace betacomio.Services.ProductServices
         }
 
         // Metodo per ottenere tutti i prodotti e restituire una lista di GetProductDto
-        public async Task<ServiceResponse<List<GetProductDto>>> GetAllProduct()
-        {
-            // Creazione dell'oggetto di risposta del servizio
-            var serviceResponse = new ServiceResponse<List<GetProductDto>>();
+      public async Task<ServiceResponse<List<Product>>> GetAllProduct()
+{
+    // Creazione dell'oggetto di risposta del servizio
+    var serviceResponse = new ServiceResponse<List<Product>>();
 
-            // Ottenimento di tutti i prodotti dal database utilizzando Entity Framework Core (ToListAsync)
-            var dbProducts = await _adventure.Products.ToListAsync();
+    try
+    {
+        // Ottenimento di 10 prodotti dal database utilizzando Entity Framework Core (ToListAsync)
+        serviceResponse.Data = await _adventure.Products
+            .Include(c => c.ProductCategory)
 
-            // Mapping dei prodotti del database a oggetti GetProductDto utilizzando AutoMapper (Select e Map)
-            serviceResponse.Data = dbProducts.Select(product => _mapper.Map<GetProductDto>(product)).ToList();
+             //.Take(10)  Prendi solo 10 prodotti
+            .ToListAsync();
 
-            // Restituzione dell'oggetto di risposta contenente la lista di GetProductDto
-            return serviceResponse;
-        }
+        // Restituzione dell'oggetto di risposta contenente la lista di GetProductDto
+        return serviceResponse;
+    }
+    catch (Exception ex)
+    {
+        // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+        serviceResponse.Success = false;
+        serviceResponse.Message = ex.Message;
+        return serviceResponse;
+    }
+}
 
         // Metodo per ottenere un prodotto per ID (non ancora implementato)
         public Task<ServiceResponse<GetProductDto>> GetProductById(int id)
