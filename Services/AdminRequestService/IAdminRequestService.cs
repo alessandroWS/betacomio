@@ -9,6 +9,7 @@ namespace betacomio.Services.AdminRequestService
     public interface IAdminRequestService
     {
         Task<ServiceResponse<List<AdminRequest>>> GetAllReq();
+        Task<ServiceResponse<int>> GetAllReqCount();
        Task<ServiceResponse<PutReqDto>> UpdateReq(int id, PutReqDto putDto);
        Task<ServiceResponse<AdminRequest>> CreateAdminRequest(AdminRequest adminRequest);
     }

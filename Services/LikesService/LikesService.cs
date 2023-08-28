@@ -35,6 +35,10 @@ namespace betacomio.Services.LikesService
             _context.Like.Add(like);
             await _context.SaveChangesAsync();
 
+             serviceResponse.Data = await _context.Like
+                .Where(c => c.User!.Id == GetUserId())
+                .Select(c => _mapper.Map<AddLikesDto>(c))
+                .ToListAsync();
   
             serviceResponse.Message = "Inserito correttamente fra i preferiti";
 
@@ -56,8 +60,13 @@ namespace betacomio.Services.LikesService
             var serviceResponse = new ServiceResponse<List<AddLikesDto>>();
 
             // Ottiene tutti gli ordini dell'utente dal DataContext utilizzando LINQ e proietta i risultati a GetOrderDto
-            var awe = await _context.Like.Where(c => c.User!.Id == 17).ToListAsync();
+            var awe = await _context.Like.Where(c => c.User!.Id == GetUserId()).ToListAsync();
+            foreach (var like in awe)
+                {
+                    like.User!.Id = GetUserId();
+                }
             serviceResponse.Data = awe.Select(c => _mapper.Map<AddLikesDto>(c)).ToList();
+            
 
             // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto
             return serviceResponse;

@@ -4,7 +4,7 @@ namespace betacomio.Dtos.Likes
     {
        
         public string ProductName {get; set;} 
-        public int Price {get; set;}
+        public string Price {get; set;}
         public int UserId {get; set;}
 
 

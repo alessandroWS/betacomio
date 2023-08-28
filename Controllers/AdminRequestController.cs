@@ -27,6 +27,15 @@ namespace betacomio.Controllers
             var adminRequestDtos = adminRequest;
             return Ok(adminRequestDtos);
         } 
+
+        [HttpGet("GetAllCount")]
+        public async Task<ServiceResponse<int>> GetCount()
+        {
+            var adminRequest = await _requestservice.GetAllReqCount();
+            var adminRequestDtos = adminRequest;
+            return adminRequestDtos;
+        } 
+
         [HttpPut] // Attributo per specificare il percorso dell'endpoint di questo metodo con il metodo HTTP PUT
         public async Task<ActionResult<ServiceResponse<List<PutReqDto>>>> UpdateReq(int id, PutReqDto putDto)
         {

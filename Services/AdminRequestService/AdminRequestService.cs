@@ -33,6 +33,21 @@ namespace betacomio.Services.AdminRequestService
             return serviceResponse;
 
         }
+
+        public async Task<ServiceResponse<int>> GetAllReqCount()
+        {
+             var serviceResponse = new ServiceResponse<int>();
+
+            var dbReqCount = await _context.AdminRequest
+                .Include(h => h.User)
+                .Where(e => e.IsAccepted == null)
+                .CountAsync();
+
+            serviceResponse.Data = dbReqCount;
+
+            return serviceResponse;
+
+        }
          public async Task<ServiceResponse<PutReqDto>> UpdateReq(int id, PutReqDto putDto)
         {
             // Creazione dell'oggetto di risposta del servizio
