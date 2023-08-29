@@ -20,12 +20,22 @@ namespace betacomio.Controllers
         
         public async Task<ActionResult<ServiceResponse<List<Product>>>> Get()
         {
-            
             // Chiamata al servizio IProductService per ottenere tutti i prodotti
             var products = await _productService.GetAllProduct();
 
             // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dei prodotti
             return products;
         }
+
+        [HttpGet("{id}")] // Attributo per specificare il percorso dell'endpoint di questo metodo con un parametro "id"
+        public async Task<ActionResult<ServiceResponse<Product>>> GetSingle(int id)
+        {
+            // Chiama il servizio IOrderService per ottenere l'ordine con l'Id specificato per l'utente autenticato
+            var order = await _productService.GetProductById(id);
+
+            // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dell'ordine
+            return Ok(order);
+        }
+
     }
 }

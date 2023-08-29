@@ -55,10 +55,20 @@ namespace betacomio.Services.ProductServices
     }
 }
 
-        // Metodo per ottenere un prodotto per ID (non ancora implementato)
-        public Task<ServiceResponse<GetProductDto>> GetProductById(int id)
+        public async Task<ServiceResponse<Product>> GetProductById(int id)
         {
-            throw new NotImplementedException();
+            // Creazione dell'oggetto di risposta del servizio
+            var serviceResponse = new ServiceResponse<Product>();
+
+            // Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
+            var dbOrder = await _adventure.Products
+                .FirstOrDefaultAsync(c => c.ProductId == id);
+
+            // Mapping dell'ordine ottenuto a un oggetto GetOrderDto utilizzando AutoMapper
+            serviceResponse.Data = dbOrder;
+
+            // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto
+            return serviceResponse;
         }
     }
 }
