@@ -95,6 +95,7 @@ namespace betacomio.Services.OrderService
         // Metodo per ottenere tutti gli ordini e restituire una lista di GetOrderDto
         public async Task<ServiceResponse<List<GetOrderDto>>> GetAllOrder()
         {
+            
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<List<GetOrderDto>>();
 

@@ -63,7 +63,6 @@ namespace betacomio.Data
                     response.Message = "Wrong password";
                 }
             }
-
             // Restituisce l'oggetto di risposta del servizio contenente il risultato dell'autenticazione
             return response;
         }

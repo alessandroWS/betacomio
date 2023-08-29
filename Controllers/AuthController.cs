@@ -48,6 +48,7 @@ namespace betacomio.Controllers
                 return BadRequest(response);
             }
 
+            HttpContext.Session.SetString("currentSession", "Active");
             // Se l'autenticazione ha avuto successo, restituisce una risposta HTTP con lo status 200 (OK) e il token di accesso generato per l'utente autenticato
             return Ok(response);
         }

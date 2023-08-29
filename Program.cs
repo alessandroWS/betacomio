@@ -118,6 +118,16 @@ builder.Services.AddCors(opt =>
                     });
             });
 
+builder.Services.AddDistributedMemoryCache(); // Usa una cache in memoria per scopi di esempio. In produzione, dovresti utilizzare una cache distribuita.
+
+// Configura la sessione
+builder.Services.AddSession(option =>
+{
+    option.IdleTimeout = TimeSpan.FromMinutes(
+        builder.Configuration.GetValue<int>("SessionTimeout"));
+    option.Cookie.IsEssential = true;
+});
+
 // Crea l'istanza dell'applicazione
 var app = builder.Build();
 
@@ -144,7 +154,7 @@ app.MapControllers();
 
 // Configura l'uso delle politiche CORS
 app.UseCors();
-
+app.UseSession();
 // Avvia l'applicazione
 app.Run();
 

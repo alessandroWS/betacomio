@@ -8,7 +8,7 @@ using betacomio.Dtos.AdminRequest;
 namespace betacomio.Controllers
 {
     
-        [Authorize]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class AdminRequestController : ControllerBase

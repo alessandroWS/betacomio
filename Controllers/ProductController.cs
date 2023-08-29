@@ -20,6 +20,7 @@ namespace betacomio.Controllers
         
         public async Task<ActionResult<ServiceResponse<List<Product>>>> Get()
         {
+            
             // Chiamata al servizio IProductService per ottenere tutti i prodotti
             var products = await _productService.GetAllProduct();
 
