@@ -10,6 +10,7 @@ namespace betacomio.Services.ProductCategoryService
     {
         Task<ServiceResponse<List<GetProductCategoryDto>>> GetProductCategory();
 
-        
+        Task<ServiceResponse<ProductCategory>> GetProductCategoryById(int id);
+
     }
 }

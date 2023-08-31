@@ -30,6 +30,17 @@ namespace betacomio.Controllers
             // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dei prodotti
             return products;
         }
+
+        [HttpGet("{id}")] // Attributo per specificare il percorso dell'endpoint di questo metodo con un parametro "id"
+        public async Task<ActionResult<ServiceResponse<ProductCategory>>> GetSingleProductCategory(int id)
+        {
+            // Chiama il servizio IOrderService per ottenere l'ordine con l'Id specificato per l'utente autenticato
+            var order = await _productCategoryService.GetProductCategoryById(id);
+
+            // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dell'ordine
+            return Ok(order);
+        }
         
+
     }
 }

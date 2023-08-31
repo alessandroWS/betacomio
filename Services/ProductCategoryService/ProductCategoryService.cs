@@ -48,6 +48,23 @@ namespace betacomio.Services.ProductCategoryService
             }
         }
 
+
+        public async Task<ServiceResponse<ProductCategory>> GetProductCategoryById(int id)
+        {
+            // Creazione dell'oggetto di risposta del servizio
+            var serviceResponse = new ServiceResponse<ProductCategory>();
+
+            // Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
+            var dbOrder = await _adventure.ProductCategories
+                .FirstOrDefaultAsync(c => c.ProductCategoryId == id);
+
+            // Mapping dell'ordine ottenuto a un oggetto GetOrderDto utilizzando AutoMapper
+            serviceResponse.Data = dbOrder;
+
+            // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto
+            return serviceResponse;
+        }
+
         
     }
 }
