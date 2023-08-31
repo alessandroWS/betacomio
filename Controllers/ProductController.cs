@@ -37,5 +37,15 @@ namespace betacomio.Controllers
             return Ok(order);
         }
 
+        [HttpGet("category/{id}")] // Attributo per specificare il percorso dell'endpoint di questo metodo con un parametro "id"
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProductOfCategory(int id)
+        {
+            // Chiama il servizio IOrderService per ottenere l'ordine con l'Id specificato per l'utente autenticato
+            var order = await _productService.GetProductByIdCategory(id);
+
+            // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dell'ordine
+            return Ok(order);
+        }
+
     }
 }

@@ -70,5 +70,31 @@ namespace betacomio.Services.ProductServices
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<List<Product>>> GetProductByIdCategory(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<Product>>();
+
+        try
+        {
+        // Ottenimento di 10 prodotti dal database utilizzando Entity Framework Core (ToListAsync)
+        serviceResponse.Data = await _adventure.Products
+            .Where(c => c.ProductCategory.ProductCategoryId == id).Include(c => c.ProductCategory)
+
+
+             //.Take(10)  Prendi solo 10 prodotti
+            .ToListAsync();
+
+        // Restituzione dell'oggetto di risposta contenente la lista di GetProductDto
+        return serviceResponse;
+        }
+        catch (Exception ex)
+        {
+            // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+            serviceResponse.Success = false;
+            serviceResponse.Message = ex.Message;
+            return serviceResponse;
+        }
+        }
     }
 }
