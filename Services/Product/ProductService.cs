@@ -74,7 +74,7 @@ namespace betacomio.Services.ProductServices
         public async Task<ServiceResponse<List<Product>>> GetProductByIdCategory(int id)
         {
             var serviceResponse = new ServiceResponse<List<Product>>();
-
+ 
         try
         {
         // Ottenimento di 10 prodotti dal database utilizzando Entity Framework Core (ToListAsync)
