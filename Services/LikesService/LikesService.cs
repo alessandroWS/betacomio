@@ -6,69 +6,71 @@ namespace betacomio.Services.LikesService
     {
         private readonly IMapper _mapper;
         private readonly DataContext _context;
-        private readonly IHttpContextAccessor _httpContextAccessor; // Oggetto per accedere al contesto HTTP
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public LikesService (IMapper mapper, DataContext context, IHttpContextAccessor httpContextAccessor)
         {
-            _httpContextAccessor = httpContextAccessor; // Inizializza l'oggetto per accedere al contesto HTTP
-            _mapper = mapper; // Inizializza l'oggetto AutoMapper
-            _context = context; // Inizializza l'oggetto per accedere al contesto del database DataContext
+            _httpContextAccessor = httpContextAccessor;
+            _mapper = mapper;
+            _context = context;
         }
 
         private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
-        .FindFirstValue(ClaimTypes.NameIdentifier)!);
+            .FindFirstValue(ClaimTypes.NameIdentifier)!);
 
         public async Task<ServiceResponse<List<AddLikesDto>>> AddLikes(AddLikesDto addlike)
         {
             var serviceResponse = new ServiceResponse<List<AddLikesDto>>();
 
-            try{
-            // Creazione dell'oggetto di risposta del servizio
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == GetUserId());
+                if (user != null)
+                {
+                    var like = _mapper.Map<Like>(addlike);
+                    like.User = user;
 
-            // Mapping dell'oggetto AddOrderDto a un oggetto Order utilizzando AutoMapper
-            var like = _mapper.Map<Like>(addlike);
+                    _context.Like.Add(like);
+                    await _context.SaveChangesAsync();
 
-            // Imposta l'utente associato all'ordine ottenendo l'utente corrente dal DataContext
-            like.User = await _context.Users.FirstOrDefaultAsync(u => u.Id == GetUserId());
+                    serviceResponse.Data = await _context.Like
+                        .Where(c => c.User!.Id == GetUserId())
+                        .Select(c => _mapper.Map<AddLikesDto>(c))
+                        .ToListAsync();
 
-            // Aggiunge l'ordine al DataContext e salva le modifiche nel database
-            _context.Like.Add(like);
-            await _context.SaveChangesAsync();
-
-             serviceResponse.Data = await _context.Like
-                .Where(c => c.User!.Id == GetUserId())
-                .Select(c => _mapper.Map<AddLikesDto>(c))
-                .ToListAsync();
-  
-            serviceResponse.Message = "Inserito correttamente fra i preferiti";
-
-            // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto aggiornata
-            return serviceResponse;
-
-            } catch (Exception ex){
-                // Se si verifica un'eccezione durante l'eliminazione dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                    serviceResponse.Message = "Inserito correttamente fra i preferiti";
+                }
+                else
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Utente non trovato.";
+                }
+            }
+            catch (Exception ex)
+            {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
-                return serviceResponse;
-
             }
+
+            return serviceResponse;
         }
 
         public async Task<ServiceResponse<List<AddLikesDto>>> GetAllLikes(int userId)
         {
-             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<List<AddLikesDto>>();
 
-            // Ottiene tutti gli ordini dell'utente dal DataContext utilizzando LINQ e proietta i risultati a GetOrderDto
-            var awe = await _context.Like.Where(c => c.User!.Id == GetUserId()).ToListAsync();
-            foreach (var like in awe)
-                {
-                    like.User!.Id = GetUserId();
-                }
-            serviceResponse.Data = awe.Select(c => _mapper.Map<AddLikesDto>(c)).ToList();
-            
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user != null)
+            {
+                var likes = await _context.Like.Where(c => c.User!.Id == userId).ToListAsync();
+                serviceResponse.Data = likes.Select(c => _mapper.Map<AddLikesDto>(c)).ToList();
+            }
+            else
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = "Utente non trovato.";
+            }
 
-            // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto
             return serviceResponse;
         }
     }
