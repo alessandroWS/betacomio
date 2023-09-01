@@ -42,9 +42,17 @@ namespace betacomio.Controllers
             return adminRequestDtos;
         }
 
+        [HttpGet("UserRequestCount")]
+        public async Task<ServiceResponse<int>> GetUserRequestCount()
+        {
+            int userId = GetUserIdFromClaim();
+            var adminRequestCount = await _requestservice.GetUserRequestCount(userId);
+            return adminRequestCount;
+        }
+
         [HttpPut("{id}")]
-public async Task<ActionResult<ServiceResponse<PutReqDto>>> UpdateReq(int id, [FromBody] PutReqDto putDto)
-{
+        public async Task<ActionResult<ServiceResponse<PutReqDto>>> UpdateReq(int id, [FromBody] PutReqDto putDto)
+        {
             if (putDto == null)
             {
                 return BadRequest("Il DTO PutReqDto è null.");
@@ -62,7 +70,7 @@ public async Task<ActionResult<ServiceResponse<PutReqDto>>> UpdateReq(int id, [F
             return response.Data is null ? NotFound(response) : Ok(response);
         }
 
-        [HttpPost]
+        [HttpPost("AddReq")]
         public async Task<ActionResult<ServiceResponse<AdminRequest>>> PostAdminRequest(PostAdminRequestDto postDto)
         {
             int userId = GetUserIdFromClaim(); // Metodo per ottenere UserId dal Claim del JWT
@@ -74,11 +82,26 @@ public async Task<ActionResult<ServiceResponse<PutReqDto>>> UpdateReq(int id, [F
             var adminRequest = new AdminRequest
             {
                 UserId = userId,
-                // Gli altri valori saranno i valori di default specificati nella classe AdminRequest
             };
 
             var response = await _requestservice.CreateAdminRequest(adminRequest);
             return response.Success ? Ok(response) : BadRequest(response.Message);
+        }
+        [HttpDelete("DeleteReq")]
+        public async Task<ActionResult<ServiceResponse<string>>> DeleteAdminRequest()
+        {
+            int userId = GetUserIdFromClaim();
+
+            // Verifica se l'utente ha almeno una richiesta in sospeso
+            var userRequestCount = await _requestservice.GetUserRequestCount(userId);
+            if (userRequestCount.Data == 0)
+            {
+                return BadRequest("Non hai richieste da eliminare.");
+            }
+
+            // Elimina la prima richiesta in sospeso dell'utente loggato
+            var response = await _requestservice.DeleteUserRequest(userId);
+            return response.Success ? Ok("Richiesta eliminata con successo.") : BadRequest(response.Message);
         }
 
         private int GetUserIdFromClaim()

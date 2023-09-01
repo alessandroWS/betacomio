@@ -8,7 +8,7 @@ namespace betacomio.Services.AdminRequestService
         private readonly IMapper _mapper;
         private readonly DataContext _context;
 
-        public AdminRequestService (IMapper mapper, DataContext context)
+        public AdminRequestService(IMapper mapper, DataContext context)
         {
             _mapper = mapper;
             _context = context;
@@ -36,7 +36,7 @@ namespace betacomio.Services.AdminRequestService
 
         public async Task<ServiceResponse<int>> GetAllReqCount()
         {
-             var serviceResponse = new ServiceResponse<int>();
+            var serviceResponse = new ServiceResponse<int>();
 
             var dbReqCount = await _context.AdminRequest
                 .Include(h => h.User)
@@ -48,9 +48,9 @@ namespace betacomio.Services.AdminRequestService
             return serviceResponse;
 
         }
-         public async Task<ServiceResponse<PutReqDto>> UpdateReq(int id, PutReqDto putDto)
+        public async Task<ServiceResponse<PutReqDto>> UpdateReq(int id, PutReqDto putDto)
         {
-            
+
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<PutReqDto>();
             if (id != putDto.IdRequest)
@@ -87,7 +87,7 @@ namespace betacomio.Services.AdminRequestService
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto aggiornato o l'eventuale messaggio di errore
             return serviceResponse;
         }
-    public async Task<ServiceResponse<AdminRequest>> CreateAdminRequest(AdminRequest adminRequest)
+        public async Task<ServiceResponse<AdminRequest>> CreateAdminRequest(AdminRequest adminRequest)
         {
             var serviceResponse = new ServiceResponse<AdminRequest>();
 
@@ -97,11 +97,14 @@ namespace betacomio.Services.AdminRequestService
             try
             {
                 //controllo per verificare se l'utente ha fatto piu di una richiesta
-                if(numReq > 0){
-                    serviceResponse.Success = false;   
+                if (numReq > 0)
+                {
+                    serviceResponse.Success = false;
                     serviceResponse.Message = "Hai fatto troppe richieste";
 
-                } else {
+                }
+                else
+                {
                     // Aggiungi l'AdminRequest al DataContext
                     _context.AdminRequest.Add(adminRequest);
                     // Salva le modifiche nel database
@@ -116,6 +119,50 @@ namespace betacomio.Services.AdminRequestService
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.InnerException.Message;
             }
+
+            return serviceResponse;
+        }
+        // AdminRequestService.cs
+        public async Task<ServiceResponse<string>> DeleteUserRequest(int userId)
+        {
+            var serviceResponse = new ServiceResponse<string>();
+
+            try
+            {
+                // Trova la prima richiesta in sospeso dell'utente loggato
+                var requestToDelete = await _context.AdminRequest
+                    .FirstOrDefaultAsync(r => r.UserId == userId && r.IsAccepted == null);
+
+                if (requestToDelete == null)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "Non hai richieste da eliminare.";
+                    return serviceResponse;
+                }
+
+                _context.AdminRequest.Remove(requestToDelete);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Data = "Richiesta eliminata con successo.";
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.InnerException.Message;
+            }
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<int>> GetUserRequestCount(int userId)
+        {
+            var serviceResponse = new ServiceResponse<int>();
+
+            var userRequestCount = await _context.AdminRequest
+                .Where(r => r.UserId == userId)
+                .CountAsync();
+
+            serviceResponse.Data = userRequestCount;
 
             return serviceResponse;
         }
