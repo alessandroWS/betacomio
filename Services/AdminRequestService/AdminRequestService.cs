@@ -56,7 +56,7 @@ namespace betacomio.Services.AdminRequestService
             if (id != putDto.IdRequest)
             {
                 serviceResponse.Success = false;
-                serviceResponse.Message = "esplodi porcodio";
+                serviceResponse.Message = "errore";
                 return serviceResponse;
             }
             try
@@ -99,7 +99,7 @@ namespace betacomio.Services.AdminRequestService
                 //controllo per verificare se l'utente ha fatto piu di una richiesta
                 if(numReq > 0){
                     serviceResponse.Success = false;   
-                    serviceResponse.Message = "Hai fatto troppe richieste gay";
+                    serviceResponse.Message = "Hai fatto troppe richieste";
 
                 } else {
                     // Aggiungi l'AdminRequest al DataContext

@@ -38,5 +38,16 @@ namespace betacomio.Controllers
 
             return Ok(orders);
         }
+
+        [HttpDelete("{id}")] // Attributo per specificare il percorso dell'endpoint di questo metodo con un parametro "id" e il metodo HTTP DELETE
+        public async Task<ActionResult<ServiceResponse<AddLikesDto>>> DeleteLike(int id)
+        {
+            // Chiama il servizio IOrderService per eliminare l'ordine con l'Id specificato per l'utente autenticato
+            var response = await _likeService.DeleteLike(id);
+
+            // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dell'ordine eliminato, se l'ordine è stato trovato
+            // Altrimenti, restituisce una risposta HTTP con lo status 404 (Not Found)
+            return response.Data is null ? NotFound(response) : Ok(response);
+        }
     }
 }
