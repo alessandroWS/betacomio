@@ -1,23 +1,29 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using betacomio.Services.AdminRequestService;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using betacomio.Dtos.OldOrder;
+using Microsoft.EntityFrameworkCore;
 using betacomio.Dtos.AdminRequest;
+using betacomio.Models;
+using betacomio.Services.AdminRequestService;
 
 namespace betacomio.Controllers
 {
-    
     [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class AdminRequestController : ControllerBase
     {
         private readonly IAdminRequestService _requestservice;
+        private readonly IMapper _mapper;
 
         public AdminRequestController(IAdminRequestService requestservice, IMapper mapper)
         {
             _requestservice = requestservice;
+            _mapper = mapper;
         }
 
         [HttpGet("GetAll")]
@@ -26,7 +32,7 @@ namespace betacomio.Controllers
             var adminRequest = await _requestservice.GetAllReq();
             var adminRequestDtos = adminRequest;
             return Ok(adminRequestDtos);
-        } 
+        }
 
         [HttpGet("GetAllCount")]
         public async Task<ServiceResponse<int>> GetCount()
@@ -34,19 +40,29 @@ namespace betacomio.Controllers
             var adminRequest = await _requestservice.GetAllReqCount();
             var adminRequestDtos = adminRequest;
             return adminRequestDtos;
-        } 
+        }
 
-        [HttpPut] // Attributo per specificare il percorso dell'endpoint di questo metodo con il metodo HTTP PUT
-        public async Task<ActionResult<ServiceResponse<List<PutReqDto>>>> UpdateReq(int id, PutReqDto putDto)
-        {
-            // Chiama il servizio IOrderService per aggiornare l'ordine per l'utente autenticato
+        [HttpPut("{id}")]
+public async Task<ActionResult<ServiceResponse<PutReqDto>>> UpdateReq(int id, [FromBody] PutReqDto putDto)
+{
+            if (putDto == null)
+            {
+                return BadRequest("Il DTO PutReqDto è null.");
+            }
+
+            // Verifica se UserId è valido (diverso da zero o dal valore di default)
+            if (putDto.UserId <= 0)
+            {
+                return BadRequest("UserId non è stato inizializzato nel DTO PutReqDto.");
+            }
+
             var response = await _requestservice.UpdateReq(id, putDto);
 
-            // Restituisce una risposta HTTP con lo status 200 (OK) e i dati degli ordini aggiornati, se l'ordine è stato trovato
-            // Altrimenti, restituisce una risposta HTTP con lo status 404 (Not Found)
+            // Restituisce una risposta HTTP in base al risultato dell'aggiornamento
             return response.Data is null ? NotFound(response) : Ok(response);
         }
-        [HttpPost] // Assicurati di aver configurato l'autenticazione nel file di configurazione (Startup.cs)
+
+        [HttpPost]
         public async Task<ActionResult<ServiceResponse<AdminRequest>>> PostAdminRequest(PostAdminRequestDto postDto)
         {
             int userId = GetUserIdFromClaim(); // Metodo per ottenere UserId dal Claim del JWT
@@ -65,7 +81,6 @@ namespace betacomio.Controllers
             return response.Success ? Ok(response) : BadRequest(response.Message);
         }
 
-        // Metodo per ottenere UserId dal Claim del JWT
         private int GetUserIdFromClaim()
         {
             var claim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
@@ -75,6 +90,5 @@ namespace betacomio.Controllers
             }
             return 0;
         }
-
     }
 }
