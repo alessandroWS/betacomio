@@ -18,13 +18,18 @@ global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Authorization;
 global using betacomio.Dtos.User;
 global using betacomio.Services.AdminRequestService;
+global using NLog;
 using betacomio.Services.LikesService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 using betacomio.Services.ProductCategoryService;
 //global using betacomio.Dtos.AdminRequest;
 // Creazione dell'istanza del WebApplicationBuilder
+
+
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Aggiunge i servizi al container.
 

@@ -8,6 +8,7 @@ namespace betacomio.Services.ProductServices
         private readonly IHttpContextAccessor _httpContext; // Oggetto per accedere al contesto HTTP
         private readonly AdventureWorksLt2019Context _adventure; // Oggetto per accedere al contesto del database AdventureWorksLT2019
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         // Costruttore della classe, viene utilizzato per iniettare le dipendenze necessarie
         public ProductService(IMapper mapper, IHttpContextAccessor httpContext, AdventureWorksLt2019Context adventure)
         {
@@ -51,6 +52,8 @@ namespace betacomio.Services.ProductServices
         // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
         serviceResponse.Success = false;
         serviceResponse.Message = ex.Message;
+        
+                logger.Trace(ex.InnerException, ex.Message);
         return serviceResponse;
     }
 }
@@ -59,13 +62,24 @@ namespace betacomio.Services.ProductServices
         {
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<Product>();
-
-            // Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
+            try
+            {
+// Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
             var dbOrder = await _adventure.Products
                 .FirstOrDefaultAsync(c => c.ProductId == id);
 
             // Mapping dell'ordine ottenuto a un oggetto GetOrderDto utilizzando AutoMapper
             serviceResponse.Data = dbOrder;
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+            
 
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto
             return serviceResponse;
@@ -93,6 +107,8 @@ namespace betacomio.Services.ProductServices
             // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
             serviceResponse.Success = false;
             serviceResponse.Message = ex.Message;
+            
+                logger.Trace(ex.InnerException, ex.Message);
             return serviceResponse;
         }
         }

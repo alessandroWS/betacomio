@@ -16,6 +16,7 @@ namespace betacomio.Services.OrderService
         private readonly IHttpContextAccessor _httpContextAccessor; // Oggetto per accedere al contesto HTTP
         private readonly DataContext2 _context2; // Oggetto per accedere al contesto del database DataContext2
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         // Costruttore della classe, viene utilizzato per iniettare le dipendenze necessarie
         public OrderService(IMapper mapper, DataContext context, IHttpContextAccessor httpContextAccessor, DataContext2 context2)
         {
@@ -34,7 +35,8 @@ namespace betacomio.Services.OrderService
         {
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<List<GetOrderDto>>();
-
+            try
+            {
             // Mapping dell'oggetto AddOrderDto a un oggetto Order utilizzando AutoMapper
             var order = _mapper.Map<Order>(newOrder);
 
@@ -50,6 +52,16 @@ namespace betacomio.Services.OrderService
                 .Where(c => c.User!.Id == GetUserId())
                 .Select(c => _mapper.Map<GetOrderDto>(c))
                 .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+
 
             // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto aggiornata
             return serviceResponse;
@@ -86,6 +98,8 @@ namespace betacomio.Services.OrderService
                 // Se si verifica un'eccezione durante l'eliminazione dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
+                
+                logger.Trace(ex.InnerException, ex.Message);
             }
 
             // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto aggiornata o l'eventuale messaggio di errore
@@ -98,10 +112,21 @@ namespace betacomio.Services.OrderService
             
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<List<GetOrderDto>>();
-
-            // Ottiene tutti gli ordini dell'utente dal DataContext utilizzando LINQ e proietta i risultati a GetOrderDto
+            try
+            {
             var dbOrders = await _context.Orders.Where(c => c.User!.Id == GetUserId()).ToListAsync();
             serviceResponse.Data = dbOrders.Select(c => _mapper.Map<GetOrderDto>(c)).ToList();
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+            // Ottiene tutti gli ordini dell'utente dal DataContext utilizzando LINQ e proietta i risultati a GetOrderDto
+
 
             // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto
             return serviceResponse;
@@ -112,13 +137,23 @@ namespace betacomio.Services.OrderService
         {
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<GetOrderDto>();
-
-            // Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
+            try
+            {
             var dbOrder = await _context.Orders
                 .FirstOrDefaultAsync(c => c.Id == id && c.User!.Id == GetUserId());
 
             // Mapping dell'ordine ottenuto a un oggetto GetOrderDto utilizzando AutoMapper
             serviceResponse.Data = _mapper.Map<GetOrderDto>(dbOrder);
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+
 
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto
             return serviceResponse;
@@ -158,6 +193,8 @@ namespace betacomio.Services.OrderService
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
+                
+                logger.Trace(ex.InnerException, ex.Message);
             }
 
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto aggiornato o l'eventuale messaggio di errore

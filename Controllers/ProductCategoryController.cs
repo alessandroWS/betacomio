@@ -15,6 +15,7 @@ namespace betacomio.Controllers
 
         private readonly IProductCategoryService _productCategoryService;
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         public ProductCategoryController(IProductCategoryService productCategoryService)
         {
             _productCategoryService = productCategoryService;

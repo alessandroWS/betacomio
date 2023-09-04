@@ -6,6 +6,7 @@ namespace betacomio
 {
     public class AutoMapperProfiles : Profile
     {
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         public AutoMapperProfiles()
         {
             // Definisce una mappatura tra la classe Order e la classe GetOrderDto
@@ -38,11 +39,6 @@ namespace betacomio
 
             CreateMap<ProductCategory, GetProductCategoryDto>();
             CreateMap<GetProductCategoryDto, ProductCategory>();
-            //CreateMap<AdminRequest, AdminRequestInfoDto>();
-
-                // CreateMap<AdminRequest, AdminRequestInfoDto>()
-                // .ForMember(dest => dest.IdRequest, opt => opt.MapFrom(src => src.IdRequest))
-                // .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username));
         }
     }
 }

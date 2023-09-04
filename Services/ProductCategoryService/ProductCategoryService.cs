@@ -10,6 +10,7 @@ namespace betacomio.Services.ProductCategoryService
         private readonly IHttpContextAccessor _httpContext; // Oggetto per accedere al contesto HTTP
         private readonly AdventureWorksLt2019Context _adventure; // Oggetto per accedere al contesto del database AdventureWorksLT2019
 
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         // Costruttore della classe, viene utilizzato per iniettare le dipendenze necessarie
         public ProductCategoryService(IMapper mapper, IHttpContextAccessor httpContext, AdventureWorksLt2019Context adventure)
         {
@@ -19,7 +20,7 @@ namespace betacomio.Services.ProductCategoryService
         }
 
         // Metodo per aggiungere un nuovo prodotto (non ancora implementato)
-       
+
 
         // Metodo per ottenere tutti i prodotti e restituire una lista di GetProductDto
         public async Task<ServiceResponse<List<GetProductCategoryDto>>> GetProductCategory()
@@ -44,6 +45,8 @@ namespace betacomio.Services.ProductCategoryService
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
+
+                logger.Trace(ex.InnerException, ex.Message);
                 return serviceResponse;
             }
         }
@@ -53,18 +56,29 @@ namespace betacomio.Services.ProductCategoryService
         {
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<ProductCategory>();
+            try
+            {
+                // Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
+                var dbOrder = await _adventure.ProductCategories
+                    .FirstOrDefaultAsync(c => c.ProductCategoryId == id);
 
-            // Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
-            var dbOrder = await _adventure.ProductCategories
-                .FirstOrDefaultAsync(c => c.ProductCategoryId == id);
+                // Mapping dell'ordine ottenuto a un oggetto GetOrderDto utilizzando AutoMapper
+                serviceResponse.Data = dbOrder;
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
 
-            // Mapping dell'ordine ottenuto a un oggetto GetOrderDto utilizzando AutoMapper
-            serviceResponse.Data = dbOrder;
+            }
+
 
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto
             return serviceResponse;
         }
 
-        
+
     }
 }

@@ -8,6 +8,7 @@ namespace betacomio.Controllers
     {
         private readonly IOldOrderService _oldOrderService;
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         // Costruttore della classe che richiede una dipendenza dell'interfaccia IOldOrderService
         public OldOrderController(IOldOrderService oldOrderService)
         {

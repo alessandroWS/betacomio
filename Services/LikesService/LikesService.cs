@@ -8,6 +8,7 @@ namespace betacomio.Services.LikesService
         private readonly DataContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         public LikesService(IMapper mapper, DataContext context, IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
@@ -34,6 +35,8 @@ namespace betacomio.Services.LikesService
                     {
                         serviceResponse.Success = false;
                         serviceResponse.Message = "Il prodotto è già presente tra i preferiti.";
+                        
+                logger.Trace(serviceResponse.Message);
                     }
                     else
                     {
@@ -51,12 +54,16 @@ namespace betacomio.Services.LikesService
                 {
                     serviceResponse.Success = false;
                     serviceResponse.Message = "Utente non trovato.";
+                    
+                logger.Trace(serviceResponse.Message);
                 }
             }
             catch (Exception ex)
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
+                
+                logger.Trace(ex.InnerException, ex.Message);
             }
 
             return serviceResponse;
@@ -67,6 +74,8 @@ namespace betacomio.Services.LikesService
         {
             var serviceResponse = new ServiceResponse<List<AddLikesDto>>();
 
+            try
+            {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user != null)
             {
@@ -77,7 +86,19 @@ namespace betacomio.Services.LikesService
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = "Utente non trovato.";
+                
+                logger.Trace(serviceResponse.Message);
             }
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+
 
             return serviceResponse;
         }
@@ -112,6 +133,8 @@ namespace betacomio.Services.LikesService
                 // Se si verifica un'eccezione durante l'eliminazione dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
+                
+                logger.Trace(ex.InnerException, ex.Message);
             }
 
             // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto aggiornata o l'eventuale messaggio di errore

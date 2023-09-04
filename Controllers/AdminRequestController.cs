@@ -17,6 +17,8 @@ namespace betacomio.Controllers
     [Route("[controller]")]
     public class AdminRequestController : ControllerBase
     {
+        
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         private readonly IAdminRequestService _requestservice;
         private readonly IMapper _mapper;
 

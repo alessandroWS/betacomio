@@ -7,6 +7,7 @@ namespace betacomio.Controllers
     {
         private readonly IProductService _productService;
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         // Costruttore della classe che richiede una dipendenza dell'interfaccia IProductService
         public ProductController(IProductService productService)
         {

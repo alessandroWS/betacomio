@@ -4,8 +4,11 @@ namespace betacomio.Controllers
     [Authorize] // Attributo che indica che l'accesso a questo controller richiede l'autorizzazione
     [ApiController] // Attributo che indica che questo è un controller API
     [Route("api/[controller]")] // Attributo per specificare il percorso di base delle richieste per questo controller
+    
     public class OrderController : ControllerBase
     {
+        
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         private readonly IOrderService _orderService;
 
         // Costruttore della classe che richiede una dipendenza dell'interfaccia IOrderService

@@ -1,0 +1,9 @@
+==== Log File Start ===
+LAPTOP-5M0OHCPV;2023/09/04 12:07:18.788;Error;Il prodotto è già presente tra i preferiti.;betacomio.Services.LikesService.LikesService;;
+Error;LAPTOP-5M0OHCPV;2023/09/04 12:08:55.014;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 12:13:52.130;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+==== Log File End ===
+Trace;LAPTOP-5M0OHCPV;2023/09/04 12:31:19.661;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 13:13:47.016;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+==== Log File End ===
+Trace;LAPTOP-5M0OHCPV;2023/09/04 13:28:19.724;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.

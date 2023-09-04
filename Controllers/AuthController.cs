@@ -6,6 +6,7 @@ namespace betacomio.Controllers
     {
         private readonly IAuthRepository _authRepo;
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         // Costruttore della classe che richiede una dipendenza dell'interfaccia IAuthRepository
         public AuthController(IAuthRepository authRepo)
         {

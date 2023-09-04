@@ -8,6 +8,7 @@ namespace betacomio.Services.OldOrderService
         private readonly AdventureWorksLt2019Context _adventure; // Oggetto per accedere al contesto del database AdventureWorksLT2019
         private readonly IMapper _mapper; // Oggetto AutoMapper per la mappatura degli oggetti
 
+        private static Logger logger= LogManager.GetCurrentClassLogger();
         // Costruttore della classe, viene utilizzato per iniettare le dipendenze necessarie
         public OldOrderService(IHttpContextAccessor httpContext, AdventureWorksLt2019Context adventure, IMapper mapper)
         {
@@ -24,8 +25,8 @@ namespace betacomio.Services.OldOrderService
         {
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<List<OldOrderDto>>();
-
-            // Ottiene tutti gli ordini precedenti (OldOrder) del cliente corrente dal database AdventureWorksLT2019 utilizzando LINQ
+            try
+            {
             var dbOldOrders = await _adventure.SalesOrderHeaders
                 .Where(soh => soh.Customer.EmailAddress == GetUserName())
                 .SelectMany(soh => soh.SalesOrderDetails, (soh, sod) => new { soh, sod })
@@ -44,6 +45,17 @@ namespace betacomio.Services.OldOrderService
 
             // Mapping degli ordini precedenti ottenuti a una lista di OldOrderDto utilizzando AutoMapper
             serviceResponse.Data = dbOldOrders.Select(c => _mapper.Map<OldOrderDto>(c)).ToList();
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+            // Ottiene tutti gli ordini precedenti (OldOrder) del cliente corrente dal database AdventureWorksLT2019 utilizzando LINQ
+
 
             // Restituzione dell'oggetto di risposta contenente la lista di OldOrderDto
             return serviceResponse;

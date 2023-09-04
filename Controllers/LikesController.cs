@@ -16,6 +16,8 @@ namespace betacomio.Controllers
     public class LikesController : Controller
     {
         private readonly ILikesService _likeService;
+        
+        private static Logger logger= LogManager.GetCurrentClassLogger();
 
         public LikesController(ILikesService likeService)
         {

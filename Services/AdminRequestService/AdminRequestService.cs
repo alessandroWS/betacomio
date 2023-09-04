@@ -8,6 +8,7 @@ namespace betacomio.Services.AdminRequestService
         private readonly IMapper _mapper;
         private readonly DataContext _context;
 
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public AdminRequestService(IMapper mapper, DataContext context)
         {
             _mapper = mapper;
@@ -19,15 +20,28 @@ namespace betacomio.Services.AdminRequestService
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<List<AdminRequest>>();
 
-            // Ottenimento di tutti i prodotti dal database utilizzando Entity Framework Core (ToListAsync)
-            var dbReq = await _context.AdminRequest
-                .Include(h => h.User)
-                .Where(e => e.IsAccepted == null)
-                .ToListAsync();
+            try
+            {
+                // Ottenimento di tutti i prodotti dal database utilizzando Entity Framework Core (ToListAsync)
+                var dbReq = await _context.AdminRequest
+                    .Include(h => h.User)
+                    .Where(e => e.IsAccepted == null)
+                    .ToListAsync();
 
-            // Mapping dei prodotti del database a oggetti GetProductDto utilizzando AutoMapper (Select e Map)
-            serviceResponse.Data = dbReq
-            .Select(req => req).ToList();
+                // Mapping dei prodotti del database a oggetti GetProductDto utilizzando AutoMapper (Select e Map)
+                serviceResponse.Data = dbReq
+                .Select(req => req).ToList();
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+
+
 
             // Restituzione dell'oggetto di risposta contenente la lista di GetProductDto
             return serviceResponse;
@@ -37,13 +51,24 @@ namespace betacomio.Services.AdminRequestService
         public async Task<ServiceResponse<int>> GetAllReqCount()
         {
             var serviceResponse = new ServiceResponse<int>();
+            try
+            {
+                var dbReqCount = await _context.AdminRequest
+                                .Include(h => h.User)
+                                .Where(e => e.IsAccepted == null)
+                                .CountAsync();
 
-            var dbReqCount = await _context.AdminRequest
-                .Include(h => h.User)
-                .Where(e => e.IsAccepted == null)
-                .CountAsync();
+                serviceResponse.Data = dbReqCount;
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
 
-            serviceResponse.Data = dbReqCount;
+            }
+
 
             return serviceResponse;
 
@@ -57,7 +82,10 @@ namespace betacomio.Services.AdminRequestService
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = "errore";
+
+                logger.Trace(serviceResponse.Message);
                 return serviceResponse;
+
             }
             try
             {
@@ -82,6 +110,7 @@ namespace betacomio.Services.AdminRequestService
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.InnerException.Message;
+                logger.Trace(ex.InnerException, ex.Message);
             }
 
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto aggiornato o l'eventuale messaggio di errore
@@ -102,6 +131,8 @@ namespace betacomio.Services.AdminRequestService
                     serviceResponse.Success = false;
                     serviceResponse.Message = "Hai fatto troppe richieste";
 
+                    logger.Trace(serviceResponse.Message);
+
                 }
                 else
                 {
@@ -118,6 +149,8 @@ namespace betacomio.Services.AdminRequestService
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.InnerException.Message;
+
+                logger.Trace(serviceResponse.Message);
             }
 
             return serviceResponse;
@@ -137,6 +170,8 @@ namespace betacomio.Services.AdminRequestService
                 {
                     serviceResponse.Success = false;
                     serviceResponse.Message = "Non hai richieste da eliminare.";
+
+                    logger.Trace(serviceResponse.Message);
                     return serviceResponse;
                 }
 
@@ -149,6 +184,8 @@ namespace betacomio.Services.AdminRequestService
             {
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.InnerException.Message;
+
+                logger.Trace(serviceResponse.Message);
             }
 
             return serviceResponse;
@@ -158,11 +195,23 @@ namespace betacomio.Services.AdminRequestService
         {
             var serviceResponse = new ServiceResponse<int>();
 
-            var userRequestCount = await _context.AdminRequest
-                .Where(r => r.UserId == userId)
-                .CountAsync();
+            try
+            {
+                var userRequestCount = await _context.AdminRequest
+                                .Where(r => r.UserId == userId)
+                                .CountAsync();
 
-            serviceResponse.Data = userRequestCount;
+                serviceResponse.Data = userRequestCount;
+            }
+            catch (Exception ex)
+            {
+                // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+                logger.Trace(ex.InnerException, ex.Message);
+
+            }
+
 
             return serviceResponse;
         }
