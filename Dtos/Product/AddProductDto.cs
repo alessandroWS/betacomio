@@ -1,41 +1,19 @@
-namespace betacomio.Dtos.Product
+using System.ComponentModel.DataAnnotations;
+
+public class AddProductDto
 {
-    public class AddProductDto
-    {
-        public int ProductId { get; set; }
+    [Required(ErrorMessage = "Il campo 'Name' è obbligatorio.")]
+    public string Name { get; set; }
 
-    public string Name { get; set; } = null!;
+    [Required(ErrorMessage = "Il campo 'ProductNumber' è obbligatorio.")]
+    public string ProductNumber { get; set; }
 
-    public string ProductNumber { get; set; } = null!;
-
-    public string? Color { get; set; }
-
+    [Required(ErrorMessage = "Il campo 'StandardCost' è obbligatorio.")]
     public decimal StandardCost { get; set; }
 
+    [Required(ErrorMessage = "Il campo 'ListPrice' è obbligatorio.")]
     public decimal ListPrice { get; set; }
 
-    public string? Size { get; set; }
-
-    public decimal? Weight { get; set; }
-
-    public int? ProductCategoryId { get; set; }
-
- 
-    public int? ProductModelId { get; set; }
-
-    public DateTime SellStartDate { get; set; }
-
-    public DateTime? SellEndDate { get; set; }
-
-    public DateTime? DiscontinuedDate { get; set; }
-
-    public byte[]? ThumbNailPhoto { get; set; }
-
-    public string? ThumbnailPhotoFileName { get; set; }
-
-    public Guid Rowguid { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    }
+    [Required(ErrorMessage = "Il campo 'ProductCategoryId' è obbligatorio.")]
+    public int? ProductCategoryId { get; set; } // Aggiungi ProductCategoryId come campo obbligatorio
 }

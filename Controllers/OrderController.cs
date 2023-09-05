@@ -86,5 +86,6 @@ namespace betacomio.Controllers
             // Altrimenti, restituisce una risposta HTTP con lo status 404 (Not Found)
             return response.Data is null ? NotFound(response) : Ok(response);
         }
+        
     }
 }

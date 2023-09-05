@@ -7,3 +7,125 @@ Trace;LAPTOP-5M0OHCPV;2023/09/04 12:31:19.661;betacomio.Services.LikesService.Li
 Trace;LAPTOP-5M0OHCPV;2023/09/04 13:13:47.016;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
 ==== Log File End ===
 Trace;LAPTOP-5M0OHCPV;2023/09/04 13:28:19.724;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+==== Log File End ===
+Trace;LAPTOP-5M0OHCPV;2023/09/04 13:48:52.196;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+==== Log File End ===
+Trace;LAPTOP-5M0OHCPV;2023/09/04 14:02:06.279;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 14:12:00.783;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 14:12:38.432;betacomio.Services.LikesService.LikesService;;;Order with ID 774 not found or does not belong to the current user
+==== Log File End ===
+Trace;LAPTOP-5M0OHCPV;2023/09/04 14:34:22.711;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 14:37:26.729;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 14:50:01.666;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 14:50:12.256;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:04:05.840;betacomio.Services.ProductServices.ProductService;;"System.Data.SqlTypes.SqlTypeException: SqlDateTime overflow. Must be between 1/1/1753 12:00:00 AM and 12/31/9999 11:59:59 PM.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__208_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:34:19.885;betacomio.Services.ProductServices.ProductService;;"Microsoft.Data.SqlClient.SqlException (0x80131904): Violazione del vincolo UNIQUE KEY 'AK_Product_Name'. Non è possibile inserire la chiave duplicata nell'oggetto 'SalesLT.Product'. Valore della chiave duplicata: (string).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:a17dc676-8139-4603-b971-ab6397daacb0
+Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:41:01.334;betacomio.Services.ProductServices.ProductService;;"Microsoft.Data.SqlClient.SqlException (0x80131904): Violazione del vincolo UNIQUE KEY 'AK_Product_Name'. Non è possibile inserire la chiave duplicata nell'oggetto 'SalesLT.Product'. Valore della chiave duplicata: (string).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:a3bd9d52-7586-4f98-8cdc-6fdd681bf3e6
+Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:42:19.056;betacomio.Services.ProductServices.ProductService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:50:04.795;betacomio.Services.ProductServices.ProductService;;"Microsoft.Data.SqlClient.SqlException (0x80131904): Violazione del vincolo UNIQUE KEY 'AK_Product_Name'. Non è possibile inserire la chiave duplicata nell'oggetto 'SalesLT.Product'. Valore della chiave duplicata: (string).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:9133dea7-157b-420c-ba46-33afee5d0a32
+Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:52:22.174;betacomio.Services.ProductServices.ProductService;;"Microsoft.Data.SqlClient.SqlException (0x80131904): Violazione del vincolo UNIQUE KEY 'AK_Product_Name'. Non è possibile inserire la chiave duplicata nell'oggetto 'SalesLT.Product'. Valore della chiave duplicata: (string1).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:9133dea7-157b-420c-ba46-33afee5d0a32
+Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:52:34.106;betacomio.Services.ProductServices.ProductService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:56:54.396;betacomio.Services.ProductServices.ProductService;;"Microsoft.Data.SqlClient.SqlException (0x80131904): Violazione del vincolo UNIQUE KEY 'AK_Product_Name'. Non è possibile inserire la chiave duplicata nell'oggetto 'SalesLT.Product'. Valore della chiave duplicata: (string2).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:158f574b-0ef9-4fbf-b81e-59cf35d4210c
+Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 16:57:04.075;betacomio.Services.ProductServices.ProductService;;"Microsoft.Data.SqlClient.SqlException (0x80131904): Violazione del vincolo UNIQUE KEY 'AK_Product_Name'. Non è possibile inserire la chiave duplicata nell'oggetto 'SalesLT.Product'. Valore della chiave duplicata: (string2).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:158f574b-0ef9-4fbf-b81e-59cf35d4210c
+Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/04 17:30:40.486;betacomio.Services.ProductServices.ProductService;;"Microsoft.Data.SqlClient.SqlException (0x80131904): Violazione del vincolo UNIQUE KEY 'AK_Product_Name'. Non è possibile inserire la chiave duplicata nell'oggetto 'SalesLT.Product'. Valore della chiave duplicata: (string).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:0583bd75-44ca-4e9e-9032-25da364835b3
+Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.

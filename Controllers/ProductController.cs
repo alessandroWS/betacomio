@@ -1,6 +1,7 @@
 namespace betacomio.Controllers
 {
     // Controller API per gestire le operazioni relative ai prodotti
+    
     [ApiController] // Attributo che indica che questo è un controller API
     [Route("api/[controller]")] // Attributo per specificare il percorso di base delle richieste per questo controller
     public class ProductController : ControllerBase
@@ -47,6 +48,24 @@ namespace betacomio.Controllers
             // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dell'ordine
             return Ok(order);
         }
+        [Authorize]
+[HttpPost("Add")]
+public async Task<ActionResult<ServiceResponse<List<Product>>>> AddProducts([FromBody] AddProductDto newProduct)
+{
+    var response = await _productService.AddProducts(newProduct);
+
+    if (response.Success)
+    {
+        // Restituisci una risposta HTTP con lo status 201 (Created) e i dati dei prodotti
+        return CreatedAtAction(nameof(GetSingle), new { id = response.Data[0].ProductId }, response);
+    }
+    else
+    {
+        // Restituisci una risposta HTTP con lo status 400 (Bad Request) e i dettagli dell'errore
+        return BadRequest(response);
+    }
+}
+
 
     }
 }
