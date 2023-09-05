@@ -10,5 +10,6 @@ namespace betacomio.Dtos.OldOrder
         public int OrderQty { get; set; }
         public int ProductID { get; set; }
         public string Name { get; set; }
+        public decimal Price { get; set; }
     }
 }

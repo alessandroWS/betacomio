@@ -39,9 +39,9 @@ namespace betacomio.Services.OldOrderService
                     OrderDate = x.soh.OrderDate,
                     OrderQty = x.sod.OrderQty,
                     ProductID = x.sod.ProductId,
-                    Name = x.sod.Product.Name
-                })
-                .ToListAsync();
+                    Name = x.sod.Product.Name,
+                    Price = x.soh.SubTotal,
+                }).OrderByDescending(x => x.OrderDate).ToListAsync();
 
             // Mapping degli ordini precedenti ottenuti a una lista di OldOrderDto utilizzando AutoMapper
             serviceResponse.Data = dbOldOrders.Select(c => _mapper.Map<OldOrderDto>(c)).ToList();
