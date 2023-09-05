@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using betacomio.Dtos.ProductCategory;
-using betacomio.Services.ProductCategoryService;
-using Microsoft.AspNetCore.Mvc;
-
 namespace betacomio.Controllers
 {
     [ApiController]

@@ -1,12 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using betacomio.Dtos.Likes;
-using betacomio.Services.LikesService;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace betacomio.Controllers
 {

@@ -1,5 +1,3 @@
-using betacomio.Dtos.Likes;
-
 namespace betacomio.Services.LikesService
 {
     public class LikesService : ILikesService

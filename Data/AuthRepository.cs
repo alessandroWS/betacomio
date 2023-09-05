@@ -1,4 +1,3 @@
-using System.IdentityModel.Tokens.Jwt; // Libreria per la gestione dei token JWT
 
 namespace betacomio.Data
 {

@@ -1,8 +1,3 @@
-// IAdminRequestService.cs
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using betacomio.Dtos.AdminRequest;
-
 namespace betacomio.Services.AdminRequestService
 {
     public interface IAdminRequestService

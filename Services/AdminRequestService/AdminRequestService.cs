@@ -1,6 +1,3 @@
-using betacomio.Dtos.AdminRequest;
-using Microsoft.AspNetCore.Http.HttpResults;
-
 namespace betacomio.Services.AdminRequestService
 {
     public class AdminRequestService : IAdminRequestService

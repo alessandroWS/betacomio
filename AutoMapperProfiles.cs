@@ -1,7 +1,3 @@
-using betacomio.Dtos.AdminRequest;
-using betacomio.Dtos.Likes;
-using betacomio.Dtos.ProductCategory;
-
 namespace betacomio
 {
     public class AutoMapperProfiles : Profile

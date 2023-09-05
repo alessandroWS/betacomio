@@ -1,5 +1,3 @@
-using betacomio.Dtos.ProductCategory;
-
 namespace betacomio.Services.ProductCategoryService
 {
     // Implementa l'interfaccia IProductService per fornire i servizi relativi ai prodotti
