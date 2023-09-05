@@ -58,7 +58,7 @@ namespace betacomio.Services.OrderService
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.Message;
-                logger.Trace(ex.InnerException, ex.Message);
+                // logger.Trace(ex.InnerException, ex.Message);
 
             }
 
@@ -114,7 +114,7 @@ namespace betacomio.Services.OrderService
             var serviceResponse = new ServiceResponse<List<GetOrderDto>>();
             try
             {
-            var dbOrders = await _context.Orders.Where(c => c.User!.Id == GetUserId()).ToListAsync();
+            var dbOrders = await _context.Orders.Where(c => c.User!.Id == GetUserId()).OrderByDescending(x => x.DateOrder).ToListAsync();
             serviceResponse.Data = dbOrders.Select(c => _mapper.Map<GetOrderDto>(c)).ToList();
             }
             catch (Exception ex)
