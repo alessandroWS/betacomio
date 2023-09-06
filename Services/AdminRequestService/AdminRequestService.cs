@@ -33,8 +33,8 @@ namespace betacomio.Services.AdminRequestService
             {
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-                logger.Trace(ex.InnerException, ex.Message);
+                serviceResponse.Message = ex.InnerException.Message;
+                logger.Trace(ex.InnerException.Message, ex.Message);
 
             }
 
@@ -61,8 +61,8 @@ namespace betacomio.Services.AdminRequestService
             {
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-                logger.Trace(ex.InnerException, ex.Message);
+                serviceResponse.Message = ex.InnerException.Message;
+                logger.Trace(ex.InnerException.Message, ex.Message);
 
             }
 
@@ -107,7 +107,7 @@ namespace betacomio.Services.AdminRequestService
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.InnerException.Message;
-                logger.Trace(ex.InnerException, ex.Message);
+                logger.Trace(ex.InnerException.Message, ex.Message);
             }
 
             // Restituzione dell'oggetto di risposta contenente l'oggetto GetOrderDto aggiornato o l'eventuale messaggio di errore
@@ -204,8 +204,8 @@ namespace betacomio.Services.AdminRequestService
             {
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-                logger.Trace(ex.InnerException, ex.Message);
+                serviceResponse.Message = ex.InnerException.Message;
+                logger.Trace(ex.InnerException.Message, ex.Message);
 
             }
 

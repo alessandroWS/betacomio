@@ -50,8 +50,8 @@ namespace betacomio.Services.OldOrderService
             {
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-                logger.Trace(ex.InnerException, ex.Message);
+                serviceResponse.Message = ex.InnerException.Message;
+                logger.Trace(ex.InnerException.Message, ex.Message);
 
             }
             // Ottiene tutti gli ordini precedenti (OldOrder) del cliente corrente dal database AdventureWorksLT2019 utilizzando LINQ
