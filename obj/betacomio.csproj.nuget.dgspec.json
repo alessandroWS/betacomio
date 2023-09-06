@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "a:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj": {}
+    "A:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj": {}
   },
   "projects": {
-    "a:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj": {
+    "A:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "a:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj",
+        "projectUniqueName": "A:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj",
         "projectName": "betacomio",
-        "projectPath": "a:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj",
+        "projectPath": "A:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj",
         "packagesPath": "C:\\Users\\aless\\.nuget\\packages\\",
-        "outputPath": "a:\\GDrive\\Visual Studio\\Udemy\\betacomio\\obj\\",
+        "outputPath": "A:\\GDrive\\Visual Studio\\Udemy\\betacomio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\aless\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -241,3 +241,10 @@ Trace;LAPTOP-5M0OHCPV;2023/09/06 10:04:05.064;betacomio.Services.ProductServices
    at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
 ClientConnectionId:d2d786f7-7f10-441b-9e61-efa68c3ac407
 Error Number:2627,State:1,Class:14";An error occurred while saving the entity changes. See the inner exception for details.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 10:21:41.849;betacomio.Services.LikesService.LikesService;;;Order with ID 10 not found or does not belong to the current user
+Trace;LAPTOP-5M0OHCPV;2023/09/06 10:42:25.197;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 10:48:29.215;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 10:49:03.724;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 10:49:46.208;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 10:52:19.471;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 10:53:00.336;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.

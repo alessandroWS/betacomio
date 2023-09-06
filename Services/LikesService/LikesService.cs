@@ -27,7 +27,7 @@ namespace betacomio.Services.LikesService
                 if (user != null)
                 {
                     var existingLike = await _context.Like
-                        .FirstOrDefaultAsync(l => l.ProductId == addlikes.ProductId);
+                        .FirstOrDefaultAsync(l => l.ProductId == addlikes.ProductId && l.User!.Id == GetUserId());
 
                     if (existingLike != null)
                     {
