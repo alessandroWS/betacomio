@@ -110,7 +110,7 @@ namespace betacomio.Services.LikesService
             {
                 // Ottiene l'ordine dal DataContext in base all'ID e all'ID dell'utente utilizzando LINQ
                 var like = await _context.Like
-                    .FirstOrDefaultAsync(c => c.ProductId == id && c.User!.Id == GetUserId());
+                    .FirstOrDefaultAsync(c => c.IdLike == id && c.User!.Id == GetUserId());
 
                 // Se l'ordine non viene trovato o non appartiene all'utente corrente, solleva un'eccezione
                 if (like is null)
