@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i+uGmTvvwqFYD5pcxslWvipe+c9xNHBLqYGBQEQU+5uI/wB8guClGReoGlR9ZoH1eQlSY4dT3GIozjmLQFWp+g==",
+  "dgSpecHash": "nYxlueg2wTfeJlhAjbjW4XDZDkSViaIQudxRyiPa+oCOHvqTYLQ8UzpAa8mlrVpEk7WpKiJfWBuV87J2UF7JxA==",
   "success": true,
-  "projectFilePath": "A:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj",
+  "projectFilePath": "a:\\GDrive\\Visual Studio\\Udemy\\betacomio\\betacomio.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aless\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\aless\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

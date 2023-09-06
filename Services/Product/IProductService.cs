@@ -5,6 +5,6 @@ namespace betacomio.Services.ProductServices
         Task<ServiceResponse<List<Product>>> GetAllProduct();
         Task<ServiceResponse<Product>> GetProductById(int id);
         Task<ServiceResponse<List<Product>>> GetProductByIdCategory(int id);
-        Task<ServiceResponse<List<Product>>> AddProducts(AddProductDto newProduct);
+        Task<ServiceResponse<Product>> AddProducts(AddProductDto newProduct);
     }
 }

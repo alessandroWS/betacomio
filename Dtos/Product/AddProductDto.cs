@@ -14,5 +14,5 @@ public class AddProductDto
     public decimal ListPrice { get; set; }
 
     [Required(ErrorMessage = "Il campo 'ProductCategoryId' è obbligatorio.")]
-    public int? ProductCategoryId { get; set; } // Aggiungi ProductCategoryId come campo obbligatorio
+    public int? ProductCategoryId { get; set; }
 }

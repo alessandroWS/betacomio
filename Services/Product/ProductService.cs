@@ -106,9 +106,9 @@ namespace betacomio.Services.ProductServices
             return serviceResponse;
         }
         }
-public async Task<ServiceResponse<List<Product>>> AddProducts(AddProductDto newProduct)
+public async Task<ServiceResponse<Product>> AddProducts(AddProductDto newProduct)
 {
-    var serviceResponse = new ServiceResponse<List<Product>>();
+    var serviceResponse = new ServiceResponse<Product>();
 
     try
     {
@@ -138,7 +138,7 @@ public async Task<ServiceResponse<List<Product>>> AddProducts(AddProductDto newP
             await _adventure.SaveChangesAsync();
 
             // Restituzione dei dati del prodotto aggiunto
-            serviceResponse.Data = await _adventure.Products.ToListAsync(); // Puoi anche restituire solo il prodotto appena aggiunto se necessario
+            serviceResponse.Data = await _adventure.Products.FirstOrDefaultAsync(); // Puoi anche restituire solo il prodotto appena aggiunto se necessario
             serviceResponse.Message = "Prodotto aggiunto con successo.";
             serviceResponse.Success = true;
         }
@@ -147,7 +147,7 @@ public async Task<ServiceResponse<List<Product>>> AddProducts(AddProductDto newP
     {
         // Gestione delle eccezioni
         serviceResponse.Success = false;
-        serviceResponse.Message = ex.Message;
+        serviceResponse.Message = ex.InnerException.Message;
         logger.Trace(ex.InnerException, ex.Message);
     }
 

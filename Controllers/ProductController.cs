@@ -48,22 +48,25 @@ namespace betacomio.Controllers
             // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dell'ordine
             return Ok(order);
         }
-        [Authorize]
+        //[Authorize]
 [HttpPost("Add")]
-public async Task<ActionResult<ServiceResponse<List<Product>>>> AddProducts([FromBody] AddProductDto newProduct)
+public async Task<ActionResult<ServiceResponse<Product>>> AddProducts([FromBody] AddProductDto newProduct)
 {
-    var response = await _productService.AddProducts(newProduct);
+    // var response = await _productService.AddProducts(newProduct);
 
-    if (response.Success)
-    {
-        // Restituisci una risposta HTTP con lo status 201 (Created) e i dati dei prodotti
-        return CreatedAtAction(nameof(GetSingle), new { id = response.Data[0].ProductId }, response);
-    }
-    else
-    {
-        // Restituisci una risposta HTTP con lo status 400 (Bad Request) e i dettagli dell'errore
-        return BadRequest(response);
-    }
+    // if (response.Success)
+    // {
+    //     // Restituisci una risposta HTTP con lo status 201 (Created) e i dati dei prodotti
+    //     return CreatedAtAction(nameof(GetSingle), new { id = response.Data[0].ProductId }, response);
+    // }
+    // else
+    // {
+    //     // Restituisci una risposta HTTP con lo status 400 (Bad Request) e i dettagli dell'errore
+    //     return BadRequest(response);
+    // }
+     var result = await _productService.AddProducts(newProduct);
+
+            return result.Success ? Ok(result) : BadRequest(result.Message);
 }
 
 
