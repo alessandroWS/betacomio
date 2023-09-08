@@ -31,7 +31,6 @@ namespace betacomio.Data
             // Cerca le credenziali utente corrispondenti all'username nel database DataContext2
             var userCred = await _context2.UsersCred.FirstOrDefaultAsync(u => u.Username.ToLower().Equals(username.ToLower()));
 
-            // Verifica se l'utente esiste sia come cliente che come utente del sistema
             if (customer is null && userCred is null)
             {
                 // Se l'utente non esiste né come cliente né come utente del sistema, restituisce un messaggio di errore
@@ -41,9 +40,19 @@ namespace betacomio.Data
             else if (customer is not null && userCred is not null)
             {
                 // Se l'utente esiste sia come cliente che come utente del sistema, esegue il login e restituisce un token JWT
-                response.Success = true;
-                response.Message = "Login successful.";
-                response.Data = CreateToken(userCred);
+                if (VerifyPasswordHash(password, userCred.PasswordHash, userCred.PasswordSalt))
+                {
+                    // Se la password è corretta, esegue il login e restituisce un token JWT
+                    response.Success = true;
+                    response.Message = "Login successful.";
+                    response.Data = CreateToken(userCred);
+                }
+                else
+                {
+                    // Se la password non è corretta, restituisce un messaggio di errore
+                    response.Success = false;
+                    response.Message = "Wrong password";
+                }
             }
             else if (customer is null && userCred is not null)
             {
@@ -61,6 +70,12 @@ namespace betacomio.Data
                     response.Success = false;
                     response.Message = "Wrong password";
                 }
+            }
+            else if (customer is not null && userCred is null)
+            {
+                // Se l'utente non esiste né come cliente né come utente del sistema, restituisce un messaggio di errore
+                response.Success = false;
+                response.Message = "User esistente nel vecchio db";
             }
             // Restituisce l'oggetto di risposta del servizio contenente il risultato dell'autenticazione
             return response;
@@ -110,6 +125,7 @@ namespace betacomio.Data
 
             // Imposta il dato di risposta con l'ID generato
             response.Data = generatedId;
+            response.Message = "registrazione effettuata correttamente";
             return response;
         }
 

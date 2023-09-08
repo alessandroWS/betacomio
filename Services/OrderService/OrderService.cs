@@ -35,6 +35,7 @@ namespace betacomio.Services.OrderService
         {
             // Creazione dell'oggetto di risposta del servizio
             var serviceResponse = new ServiceResponse<List<GetOrderDto>>();
+            
             try
             {
             // Mapping dell'oggetto AddOrderDto a un oggetto Order utilizzando AutoMapper

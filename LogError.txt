@@ -248,3 +248,132 @@ Trace;LAPTOP-5M0OHCPV;2023/09/06 10:49:03.724;betacomio.Services.LikesService.Li
 Trace;LAPTOP-5M0OHCPV;2023/09/06 10:49:46.208;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
 Trace;LAPTOP-5M0OHCPV;2023/09/06 10:52:19.471;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
 Trace;LAPTOP-5M0OHCPV;2023/09/06 10:53:00.336;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:13:35.187;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:14:04.628;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:14:12.675;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:14:16.184;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:14:21.066;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:20:37.998;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:25:17.464;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:25:56.760;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:26:02.653;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:26:37.042;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:26:46.439;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:26:47.726;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:26:51.603;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:26:55.095;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:26:59.435;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:27:04.246;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:41:49.581;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:42:16.849;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:55:41.032;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:56:07.749;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:57:48.575;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 12:59:58.265;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:00:33.449;betacomio.Services.OrderService.OrderService;;;"Il nome di colonna 'Address' non è valido.
+Il nome di colonna 'CAP' non è valido.
+Il nome di colonna 'City' non è valido.
+Il nome di colonna 'FirstName' non è valido.
+Il nome di colonna 'Surname' non è valido."
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:33:57.677;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:34:15.011;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:34:46.093;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:36:07.786;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:36:53.901;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:37:35.129;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:38:51.995;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:40:10.892;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:41:08.446;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 13:43:43.395;betacomio.Services.OrderService.OrderService;;;Data is Null. This method or property cannot be called on Null values.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 14:53:58.918;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 15:07:23.249;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/06 15:10:50.706;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+==== Log File End ===
