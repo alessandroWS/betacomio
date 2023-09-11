@@ -10,6 +10,7 @@ namespace betacomio.Data
         private readonly DataContext2 _context2; // Oggetto per accedere al contesto del database DataContext2
         private readonly AdventureWorksLt2019Context _adventure; // Oggetto per accedere al contesto del database AdventureWorksLT2019
 
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         // Costruttore della classe, viene utilizzato per iniettare le dipendenze necessarie
         public AuthRepository(DataContext context, DataContext2 context2, IConfiguration configuration, AdventureWorksLt2019Context adventure)
         {
@@ -30,55 +31,77 @@ namespace betacomio.Data
 
             // Cerca le credenziali utente corrispondenti all'username nel database DataContext2
             var userCred = await _context2.UsersCred.FirstOrDefaultAsync(u => u.Username.ToLower().Equals(username.ToLower()));
+            try
+            {
+                if (customer is null && userCred is null)
+                {
+                    // Se l'utente non esiste né come cliente né come utente del sistema, restituisce un messaggio di errore
+                    response.Success = false;
+                    response.Message = "UTENTE NON TROVATO";
+                    
+                logger.Trace(response.Message);
+                    
 
-            if (customer is null && userCred is null)
-            {
-                // Se l'utente non esiste né come cliente né come utente del sistema, restituisce un messaggio di errore
-                response.Success = false;
-                response.Message = "UTENTE NON TROVATO";
-            }
-            else if (customer is not null && userCred is not null)
-            {
-                // Se l'utente esiste sia come cliente che come utente del sistema, esegue il login e restituisce un token JWT
-                if (VerifyPasswordHash(password, userCred.PasswordHash, userCred.PasswordSalt))
-                {
-                    // Se la password è corretta, esegue il login e restituisce un token JWT
-                    response.Success = true;
-                    response.Message = "LOGIN EFFETTUATO CON SUCCESSO";
-                    response.Data = CreateToken(userCred);
                 }
-                else
+                else if (customer is not null && userCred is not null)
                 {
-                    // Se la password non è corretta, restituisce un messaggio di errore
+                    // Se l'utente esiste sia come cliente che come utente del sistema, esegue il login e restituisce un token JWT
+                    if (VerifyPasswordHash(password, userCred.PasswordHash, userCred.PasswordSalt))
+                    {
+                        // Se la password è corretta, esegue il login e restituisce un token JWT
+                        response.Success = true;
+                        response.Message = "LOGIN EFFETTUATO CON SUCCESSO";
+                        response.Data = CreateToken(userCred);
+                    }
+                    else
+                    {
+                        // Se la password non è corretta, restituisce un messaggio di errore
+                        response.Success = false;
+                        response.Message = "CREDENZIALI ERRATE, RIPROVARE";
+                        
+                logger.Trace(response.Message);
+                        
+                    }
+                }
+                else if (customer is null && userCred is not null)
+                {
+                    // Se l'utente esiste solo come utente del sistema, verifica la password fornita
+                    if (VerifyPasswordHash(password, userCred.PasswordHash, userCred.PasswordSalt))
+                    {
+                        // Se la password è corretta, esegue il login e restituisce un token JWT
+                        response.Success = true;
+                        response.Message = "LOGIN EFFETTUATO CON SUCCESSO";
+                        response.Data = CreateToken(userCred);
+                    }
+                    else
+                    {
+                        // Se la password non è corretta, restituisce un messaggio di errore
+                        response.Success = false;
+                        response.Message = "CREDENZIALI ERRATE, RIPROVARE";
+                        
+                logger.Trace(response.Message);
+                    }
+                }
+                else if (customer is not null && userCred is null)
+                {
+                    // Se l'utente non esiste né come cliente né come utente del sistema, restituisce un messaggio di errore
                     response.Success = false;
-                    response.Message = "CREDENZIALI ERRATE, RIPROVARE";
+                    response.Message = "PER MOTIVI DI SICUREZZA E' NECCESSARIO REGISTRARSI CON UNA NUOVA PASSWORD";
+
                 }
             }
-            else if (customer is null && userCred is not null)
+            catch (Exception ex)
             {
-                // Se l'utente esiste solo come utente del sistema, verifica la password fornita
-                if (VerifyPasswordHash(password, userCred.PasswordHash, userCred.PasswordSalt))
-                {
-                    // Se la password è corretta, esegue il login e restituisce un token JWT
-                    response.Success = true;
-                    response.Message = "LOGIN EFFETTUATO CON SUCCESSO";
-                    response.Data = CreateToken(userCred);
-                }
-                else
-                {
-                    // Se la password non è corretta, restituisce un messaggio di errore
-                    response.Success = false;
-                    response.Message = "CREDENZIALI ERRATE, RIPROVARE";
-                }
-            }
-            else if (customer is not null && userCred is null)
-            {
-                // Se l'utente non esiste né come cliente né come utente del sistema, restituisce un messaggio di errore
+                // Se si verifica un'eccezione durante l'eliminazione dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 response.Success = false;
-                response.Message = "PER MOTIVI DI SICUREZZA E' NECCESSARIO REGISTRARSI CON UNA NUOVA PASSWORD";
+                response.Message = ex.InnerException.Message;
+
+                logger.Trace(ex.InnerException.Message, ex.Message);
             }
-            // Restituisce l'oggetto di risposta del servizio contenente il risultato dell'autenticazione
+
             return response;
+            // Restituisce l'oggetto di risposta del servizio contenente il risultato dell'autenticazione
+
         }
 
         // Metodo per registrare un nuovo utente e restituire il suo ID
@@ -93,6 +116,8 @@ namespace betacomio.Data
                 // Se l'utente esiste già, restituisce un messaggio di errore
                 response.Success = false;
                 response.Message = "UTENTE GIA' ESISTENTE";
+                
+                logger.Trace(response.Message);
                 return response;
             }
 
@@ -164,7 +189,7 @@ namespace betacomio.Data
                 new Claim(ClaimTypes.NameIdentifier, userCred.Id.ToString()),
                 new Claim(ClaimTypes.Name, userCred.Username),
                 new Claim("IsAdmin", userCred.IsAdmin.ToString())
-                
+
             };
 
             // Ottiene la chiave segreta dal file JSON delle impostazioni dell'applicazione

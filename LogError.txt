@@ -377,3 +377,8 @@ Trace;LAPTOP-5M0OHCPV;2023/09/06 14:53:58.918;betacomio.Services.LikesService.Li
 Trace;LAPTOP-5M0OHCPV;2023/09/06 15:07:23.249;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
 Trace;LAPTOP-5M0OHCPV;2023/09/06 15:10:50.706;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
 ==== Log File End ===
+Trace;LAPTOP-5M0OHCPV;2023/09/11 15:55:25.150;betacomio.Services.LikesService.LikesService;;;Il prodotto è già presente tra i preferiti.
+Trace;LAPTOP-5M0OHCPV;2023/09/11 16:42:44.981;betacomio.Data.AuthRepository;;;UTENTE NON TROVATO
+Trace;LAPTOP-5M0OHCPV;2023/09/11 16:44:51.349;betacomio.Data.AuthRepository;;;CREDENZIALI ERRATE, RIPROVARE
+Trace;LAPTOP-5M0OHCPV;2023/09/11 17:06:47.824;betacomio.Data.AuthRepository;;;UTENTE NON TROVATO
+Trace;LAPTOP-5M0OHCPV;2023/09/11 17:16:45.825;betacomio.Data.AuthRepository;;;UTENTE NON TROVATO

@@ -48,7 +48,7 @@ namespace betacomio.Controllers
             // Restituisce una risposta HTTP con lo status 200 (OK) e i dati dell'ordine
             return Ok(order);
         }
-        //[Authorize]
+        [Authorize]
 [HttpPost("Add")]
 public async Task<ActionResult<ServiceResponse<Product>>> AddProducts([FromBody] AddProductDto newProduct)
 {

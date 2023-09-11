@@ -59,7 +59,7 @@ namespace betacomio.Services.OrderService
                 // Se si verifica un'eccezione durante l'aggiornamento dell'ordine, imposta il flag Success su false e aggiunge il messaggio di errore al campo Message dell'oggetto di risposta
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.InnerException.Message;
-                logger.Trace(ex.InnerException.Message, ex.Message);
+                logger.Trace(ex.InnerException.Message);    
 
             }
 
@@ -100,7 +100,7 @@ namespace betacomio.Services.OrderService
                 serviceResponse.Success = false;
                 serviceResponse.Message = ex.InnerException.Message;
                 
-                logger.Trace(ex.InnerException.Message, ex.Message);
+                logger.Trace(serviceResponse.Message);
             }
 
             // Restituzione dell'oggetto di risposta contenente la lista di GetOrderDto aggiornata o l'eventuale messaggio di errore
