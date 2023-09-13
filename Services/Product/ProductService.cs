@@ -33,10 +33,8 @@ namespace betacomio.Services.ProductServices
     {
         // Ottenimento di 10 prodotti dal database utilizzando Entity Framework Core (ToListAsync)
         serviceResponse.Data = await _adventure.Products
-            .Include(c => c.ProductCategory)
+            .Include(c => c.ProductCategory).OrderByDescending(x => x.ModifiedDate).ToListAsync();
 
-             //.Take(10)  Prendi solo 10 prodotti
-            .ToListAsync();
 
         // Restituzione dell'oggetto di risposta contenente la lista di GetProductDto
         return serviceResponse;
